@@ -8,10 +8,10 @@
 - [TeamProject_Record](https://github.com/JaeHyun-Ban/TeamProject_Record)
 프로젝트 진행 중 작성한 기록
 
+- [프로젝트 실행영상](https://www.youtube.com/watch?v=ekC01lIsz0M&ab_channel=Mulia)
+
 ![image](https://user-images.githubusercontent.com/60961649/117704978-7193ed80-b206-11eb-8bd4-5e762642574c.png)
 
-
-!youtube[ekC01lIsz0M]
 
 이 프로젝트는 국비과정 마지막에 진행된 프로젝트입니다
 
