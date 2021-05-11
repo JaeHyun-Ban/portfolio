@@ -55,7 +55,7 @@
   
 --- 
 
-### 기여한 부분
+### 설명
 [프로젝트의 draw.io로 이동](https://drive.google.com/file/d/11hfCJgL-oQzG4CAst2sfZahFVTJ6hVA-/view?usp=sharing)
 
 프로젝트 진행기간은 코로나로 인해 원격수업을 진행하던 상황이였습니다.
