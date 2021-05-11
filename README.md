@@ -62,10 +62,10 @@
 
 팀장으로써 소통을 하다보니 진행과정 대화에 있어 오류가 많이 발생하여 그것을 막기위해 **직관적이며 일관된 설명이 필요**하다고 생각하여 만들게 되었습니다.
 
-- 화면 설계도
+### 화면 설계도
 ![](https://images.velog.io/images/wogus0808/post/ac6d0b00-224d-4f62-92f9-4dcd0db96732/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84_%EB%B3%B5%EC%82%AC-%ED%99%94%EB%A9%B4%EC%84%A4%EA%B3%84.jpg)
 
-- DB - ERD모델링
+### DB - ERD모델링
 ![](https://images.velog.io/images/wogus0808/post/b21d7ddf-636b-4db0-97a7-e3a2461ab499/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84_%EB%B3%B5%EC%82%AC-DB_ER%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8%20(1).jpg)
 
 
@@ -74,11 +74,73 @@
   - 이 프로젝트를 통해 와이어 프레임이라는 것을 배웠습니다.
 ![](https://images.velog.io/images/wogus0808/post/6739096c-f205-4748-be29-81cf017c4a08/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84_%EB%B3%B5%EC%82%AC-%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84.jpg)
 
-- 프로젝트 와이어 프레임(디테일)
+### 프로젝트 와이어 프레임(디테일)
   - 기존 와이어프레임에 세부적인 디테일을 추가하였습니다.
 ![](https://images.velog.io/images/wogus0808/post/71563060-7b27-487e-a63b-aea8244322ec/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84_%EB%B3%B5%EC%82%AC-%EC%99%80%EC%9D%B4%EC%96%B4%ED%94%84%EB%A0%88%EC%9E%84_%EB%94%94%ED%85%8C%EC%9D%BC.jpg)
 
 --- 
+
+### 카카오 로그인 처리
+
+![](https://images.velog.io/images/wogus0808/post/e8d26eab-ca1a-48a2-900e-acc5b1c1cddf/image.png)
+```java
+//카카오 로그인 실행
+//카카오 API호출: 엑세스 토큰(Access Token)
+//엑세스 토큰 갱신: 리프레시 토큰(Refresh Teken)
+function loginWithKakao() {
+	//loginForm: 새 창에서 카카오 로그인
+	Kakao.Auth.loginForm ({
+		//scope: 'profile, account_email',
+		success : function(authObj) {
+			console.log(authObj);//받아온 오브젝트 데이터
+			//사용자 정보 가져오기, 카카오 API(Kakao.API.request)
+			Kakao.API.request({
+				url:'/v2/user/me',
+				success: function(response) {
+					console.log('응답: ' + response);
+					var userId = response.id + '@k';//카카오아이디 구분, console.log('유저아이디: ' + userId);
+					var userName = response.properties.nickname;
+					var userAge = response.kakao_account.age_range;
+					var userEmail = response.kakao_account.email;//console.log('이메일: ' + userEmail);
+							
+					var find = userEmail.indexOf('@');//console.log("앞에:" + userEmail.substr(0, find))
+					var email = userEmail.substr(0, find);//console.log("뒤에: " + userEmail.substring(find, userEmail.length))
+					var email2 = userEmail.substring(find, userEmail.length);
+					
+					//hidden에 값 대입
+					document.getElementById("kUserId").value = userId;
+					document.getElementById("userName").value = userName;
+					document.getElementById("userAge").value = userAge.substring(0, 2);
+					document.getElementById("email").value = email;
+					document.getElementById("email2").value = email2;
+					
+					document.getElementById("kForm").submit();
+					
+				},
+				fail: function(error){
+					console.log(error);
+				}
+				
+			})
+			console.info(JSON.stringify(authObj));
+		},
+		fail : function(error) {
+			console.error('에러 발생');
+			console.error(JSON.stringify(err))
+		},
+	})
+}
+```
+- 사용자 아이디 저장 시 맨 뒤에 '@k'를 붙여 카카오로 가입했다는 표시를 남겼습니다.
+
+---
+
+### 회원가입 처리
+
+![](https://images.velog.io/images/wogus0808/post/5d8c7814-5002-4a9b-b2ab-ad1f0552ee78/image.png)
+
+
+
 
 
 
