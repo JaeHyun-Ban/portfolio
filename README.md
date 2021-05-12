@@ -83,54 +83,8 @@
 ### 카카오 로그인 처리
 
 ![](https://images.velog.io/images/wogus0808/post/e8d26eab-ca1a-48a2-900e-acc5b1c1cddf/image.png)
-```java
-//카카오 로그인 실행
-//카카오 API호출: 엑세스 토큰(Access Token)
-//엑세스 토큰 갱신: 리프레시 토큰(Refresh Teken)
-function loginWithKakao() {
-	//loginForm: 새 창에서 카카오 로그인
-	Kakao.Auth.loginForm ({
-		//scope: 'profile, account_email',
-		success : function(authObj) {
-			console.log(authObj);//받아온 오브젝트 데이터
-			//사용자 정보 가져오기, 카카오 API(Kakao.API.request)
-			Kakao.API.request({
-				url:'/v2/user/me',
-				success: function(response) {
-					console.log('응답: ' + response);
-					var userId = response.id + '@k';//카카오아이디 구분, console.log('유저아이디: ' + userId);
-					var userName = response.properties.nickname;
-					var userAge = response.kakao_account.age_range;
-					var userEmail = response.kakao_account.email;//console.log('이메일: ' + userEmail);
-							
-					var find = userEmail.indexOf('@');//console.log("앞에:" + userEmail.substr(0, find))
-					var email = userEmail.substr(0, find);//console.log("뒤에: " + userEmail.substring(find, userEmail.length))
-					var email2 = userEmail.substring(find, userEmail.length);
-					
-					//hidden에 값 대입
-					document.getElementById("kUserId").value = userId;
-					document.getElementById("userName").value = userName;
-					document.getElementById("userAge").value = userAge.substring(0, 2);
-					document.getElementById("email").value = email;
-					document.getElementById("email2").value = email2;
-					
-					document.getElementById("kForm").submit();
-					
-				},
-				fail: function(error){
-					console.log(error);
-				}
-				
-			})
-			console.info(JSON.stringify(authObj));
-		},
-		fail : function(error) {
-			console.error('에러 발생');
-			console.error(JSON.stringify(err))
-		},
-	})
-}
-```
+
+- [코드확인](https://github.com/JaeHyun-Ban/etc/blob/master/Healing/src/main/webapp/WEB-INF/views/user/login.jsp#L124)
 - 카카오로 회원가입 시 사용자 아이디를 구분할 필요가 있어보여 저장 시 맨 뒤에 '@k'를 붙여 카카오로 가입했다는 표시를 남겼습니다.
 
 ---
