@@ -85,7 +85,10 @@
 ![](https://images.velog.io/images/wogus0808/post/e8d26eab-ca1a-48a2-900e-acc5b1c1cddf/image.png)
 
 - [코드확인](https://github.com/JaeHyun-Ban/etc/blob/master/Healing/src/main/webapp/WEB-INF/views/user/login.jsp#L124)
-- 카카오로 회원가입 시 사용자 아이디를 구분할 필요가 있어보여 저장 시 맨 뒤에 '@k'를 붙여 카카오로 가입했다는 표시를 남겼습니다.
+- 카카오로 회원가입시 일반 회원가입과 구분할 필요성이 있었습니다.
+ 이를 위해 저장 시 맨 뒤에 '@k'를 붙여 카카오로 가입했다는 표시를 남겼습니다.
+- ![image](https://user-images.githubusercontent.com/60961649/117908953-51525480-b314-11eb-8da2-e07a8f6d4924.png)
+
 
 ---
 
