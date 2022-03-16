@@ -45,6 +45,7 @@
    - Frontend
      - HTML5
      - CSS
+     - 
      - JavaScript
      - JQuery
 - ETC
